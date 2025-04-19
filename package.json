@@ -13,6 +13,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "latest",
     "next": "latest",
+    "next-safe-action": "^7.10.5",
     "react": "latest",
     "react-dom": "latest",
     "sonner": "^2.0.3",
