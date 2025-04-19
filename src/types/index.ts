@@ -49,4 +49,32 @@ export type BadgeProps = {
   children: React.ReactNode;
   variant?: 'default' | 'success' | 'warning' | 'danger' | 'info' | 'active' | 'expired';
   className?: string;
-}; 
+};
+
+export * from './api'
+export * from './actions'
+
+export type Theme = 'light' | 'dark' | 'system'
+export type Language = 'pt-BR' | 'en-US'
+
+export interface Settings {
+  theme: Theme
+  language: Language
+}
+
+export interface Tokens {
+  accessToken: string
+  refreshToken: string
+}
+
+export interface AuthState {
+  isAuthenticated: boolean
+  isLoading: boolean
+  user: User | null
+  tokens: Tokens | null
+}
+
+export interface AppState {
+  settings: Settings
+  auth: AuthState
+} 

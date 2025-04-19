@@ -1,18 +1,11 @@
+'use client'
+
 import React from 'react';
 import { TierCard } from './tier-card';
 import { subscriptionTiers } from '@/data/mockData';
+import { upgradeSubscription, downgradeSubscription } from '@/app/actions/subscription';
 
-function SubscriptionTier() {
-  const handleUpgrade = (tierId: string) => {
-    console.log(`Upgrade para o plano ${tierId} solicitado`);
-    // Em um cenário real, aqui seria a lógica de upgrade
-  };
-
-  const handleDowngrade = (tierId: string) => {
-    console.log(`Downgrade para o plano ${tierId} solicitado`);
-    // Em um cenário real, aqui seria a lógica de downgrade
-  };
-
+export function SubscriptionTier() {
   return (
     <div className="py-8">
       <div className="max-w-6xl mx-auto px-4">
@@ -28,14 +21,12 @@ function SubscriptionTier() {
             <TierCard
               key={tier.id}
               tier={tier}
-              onUpgrade={() => handleUpgrade(tier.id)}
-              onDowngrade={() => handleDowngrade(tier.id)}
+              onUpgrade={() => upgradeSubscription({ tierId: tier.id })}
+              onDowngrade={() => downgradeSubscription({ tierId: tier.id })}
             />
           ))}
         </div>
       </div>
     </div>
   );
-}
-
-export { SubscriptionTier }; 
+} 

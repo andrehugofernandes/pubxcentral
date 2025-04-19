@@ -1,7 +1,9 @@
+'use client'
+
 import React from 'react';
 import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { TierCardActions } from './tier-card-actions';
 
 interface TierCardProps {
   tier: {
@@ -14,7 +16,7 @@ interface TierCardProps {
   onDowngrade: () => void;
 }
 
-function TierCard({ tier, onUpgrade, onDowngrade }: TierCardProps) {
+export function TierCard({ tier, onUpgrade, onDowngrade }: TierCardProps) {
   const { id, name, features, isCurrentPlan } = tier;
   
   return (
@@ -41,32 +43,14 @@ function TierCard({ tier, onUpgrade, onDowngrade }: TierCardProps) {
       </ul>
       
       <div className="mt-auto">
-        {isCurrentPlan ? (
-          <div className="text-center text-secondary-700 mb-2">
-            Você é atualmente um <span className="font-bold">{name}</span>
-          </div>
-        ) : id === 'explorer' ? (
-          <Button
-            variant="secondary"
-            onClick={onDowngrade}
-            className="w-full"
-            disabled={isCurrentPlan}
-          >
-            Fazer Downgrade
-          </Button>
-        ) : (
-          <Button
-            variant="primary"
-            onClick={onUpgrade}
-            className="w-full"
-            disabled={isCurrentPlan}
-          >
-            Fazer Upgrade
-          </Button>
-        )}
+        <TierCardActions
+          id={id}
+          name={name}
+          isCurrentPlan={isCurrentPlan}
+          onUpgrade={onUpgrade}
+          onDowngrade={onDowngrade}
+        />
       </div>
     </Card>
   );
-}
-
-export { TierCard }; 
+} 
